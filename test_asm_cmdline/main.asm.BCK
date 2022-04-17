@@ -1,0 +1,27 @@
+;; PORTS DEF
+
+.equ	PORTD,0x0b
+.equ	DDRD,0x0a
+.equ	PIND,0x09
+.equ	PORTC,0x08
+.equ	DDRC,0x07
+.equ	PINC,0x06
+.equ	PORTB,0x05
+.equ	DDRB,0x04
+.equ	PINB,0x03
+
+.equ	LED_PINb,4  ;; Define LED PIN (as bit position)
+
+.org 0x00
+reset:
+rjmp main;
+
+; =========== MAIN =======
+main:
+sbi DDRB, LED_PINb ; set ledpin to OUTPUT
+rjmp loop;
+
+loop:
+sbi PORTB, LED_PINb ; set bit 1 
+cbi PORTB, LED_PINb ; clear bit
+rjmp loop;
